@@ -134,3 +134,34 @@ SELECT department, COUNT(*)
     AS employee_count 
     FROM my_table 
     GROUP BY department; 
+
+-- 9. Idade média por departamento, apenas para colaboradores com salário maior que 50000
+SELECT department, AVG(age) 
+    AS average_age 
+    FROM my_table 
+    WHERE salary > 50000 
+    GROUP BY department;
+
+-- 10. Salário por departamento MAX, MIN, AVG
+-- e a diferença entre o salário máximo e mínimo
+SELECT department, 
+    MAX(salary) AS max_salary, 
+    MIN(salary) AS min_salary, 
+    AVG(salary) AS average_salary, 
+    (MAX(salary) - MIN(salary)) AS salary_range
+    FROM my_table
+    GROUP BY department;
+
+-- 11. Estatisticas salariais por departamento
+-- para funcionarios com idade entre 25 e 45 anos
+-- Departamento, nº de colaboradores, salário médio, salário máximo
+-- total de custo com salários por departamento
+SELECT department,
+    COUNT(*) AS employee_count, 
+    AVG(salary) AS average_salary, 
+    MAX(salary) AS max_salary, 
+    SUM(salary) AS total_salary_cost
+    FROM my_table
+    WHERE age BETWEEN 25 AND 45
+    GROUP BY department;
+
